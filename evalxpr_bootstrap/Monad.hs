@@ -1,3 +1,5 @@
+import Control.Applicative 
+
 data Parser a = Parser {
     runParser :: String -> Maybe (a , String )
 }
