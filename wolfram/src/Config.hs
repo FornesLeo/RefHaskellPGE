@@ -2,7 +2,7 @@ module Config where
 
 import Text.Read
 
-type Rule = (Bool, Bool, Bool) -> Bool
+import Rule
 
 data Conf = Conf { confRule :: Maybe Rule
                  , confStartGen :: Int
@@ -13,21 +13,6 @@ data Conf = Conf { confRule :: Maybe Rule
 
 defaultConf :: Conf
 defaultConf = Conf Nothing 0 Nothing 80 0
-
-rule30 :: (Bool, Bool, Bool) -> Bool
-rule30 _ = False
-
-rule90 :: (Bool, Bool, Bool) -> Bool
-rule90 _ = False
-
-rule110 :: (Bool, Bool, Bool) -> Bool
-rule110 _ = False
-
-setRule :: Int -> Maybe Rule
-setRule 30 = Just rule30
-setRule 90 = Just rule90
-setRule 110 = Just rule110
-setRule _ = Nothing
 
 getOpt :: Conf -> String -> Int -> Maybe Conf
 getOpt conf "rule" x = Just $ conf { confRule = setRule x}
